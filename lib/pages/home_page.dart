@@ -15,7 +15,6 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text("Home"),
         centerTitle: true,
-        backgroundColor: Colors.white,
       ),
       drawer: MyDrawer(),
     );
