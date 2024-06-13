@@ -429,5 +429,114 @@ class Restaurant {
         ),
       ],
     ),
+    Food(
+      name: "Tiramisu",
+      description:
+          "A classic Italian dessert with layers of coffee-soaked ladyfingers, creamy mascarpone cheese, and a dusting of cocoa powder.",
+      imagePath: "lib/images/desserts/tiramisu_dessert.png",
+      price: 6.99,
+      category: FoodCategory.desserts,
+      availableAddons: [
+        Addon(
+          name: "Extra Marinara Sauce",
+          price: 0.50,
+        ),
+        Addon(
+          name: "Ranch Dip",
+          price: 0.75,
+        ),
+        Addon(
+          name: "Jalapeños",
+          price: 0.75,
+        ),
+      ],
+    ),
+
+    //drinks
+
+    Food(
+      name: "Cola",
+      description: "Can",
+      imagePath: "lib/images/desserts/cola_drink.png",
+      price: 1.99,
+      category: FoodCategory.drinks,
+      availableAddons: [
+        Addon(
+          name: "Extra Marinara Sauce",
+          price: 0.50,
+        ),
+        Addon(
+          name: "Ranch Dip",
+          price: 0.75,
+        ),
+        Addon(
+          name: "Jalapeños",
+          price: 0.75,
+        ),
+      ],
+    ),
+    Food(
+      name: "Lemonade",
+      description: "Glass Bottle",
+      imagePath: "lib/images/desserts/lemonade_drink.png",
+      price: 2.49,
+      category: FoodCategory.drinks,
+      availableAddons: [
+        Addon(
+          name: "Extra Marinara Sauce",
+          price: 0.50,
+        ),
+        Addon(
+          name: "Ranch Dip",
+          price: 0.75,
+        ),
+        Addon(
+          name: "Jalapeños",
+          price: 0.75,
+        ),
+      ],
+    ),
+    Food(
+      name: "Milkshake",
+      description: "Plastic Bottle",
+      imagePath: "lib/images/desserts/milkshake_drink.png",
+      price: 2.99,
+      category: FoodCategory.drinks,
+      availableAddons: [
+        Addon(
+          name: "Extra Marinara Sauce",
+          price: 0.50,
+        ),
+        Addon(
+          name: "Ranch Dip",
+          price: 0.75,
+        ),
+        Addon(
+          name: "Jalapeños",
+          price: 0.75,
+        ),
+      ],
+    ),
+    Food(
+      name: "Water",
+      description: "Plastic Bottle",
+      imagePath: "lib/images/desserts/water_drink.png",
+      price: 1.49,
+      category: FoodCategory.drinks,
+      availableAddons: [
+        Addon(
+          name: "Extra Marinara Sauce",
+          price: 0.50,
+        ),
+        Addon(
+          name: "Ranch Dip",
+          price: 0.75,
+        ),
+        Addon(
+          name: "Jalapeños",
+          price: 0.75,
+        ),
+      ],
+    ),
   ];
 }
