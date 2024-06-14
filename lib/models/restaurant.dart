@@ -1,6 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/food.dart';
 
-class Restaurant {
+class Restaurant extends ChangeNotifier {
   final List<Food> _menu = [
     //burgers
 
@@ -457,7 +458,7 @@ class Restaurant {
     Food(
       name: "Cola",
       description: "Can",
-      imagePath: "lib/images/desserts/cola_drink.png",
+      imagePath: "lib/images/drinks/cola_drink.png",
       price: 1.99,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -478,7 +479,7 @@ class Restaurant {
     Food(
       name: "Lemonade",
       description: "Glass Bottle",
-      imagePath: "lib/images/desserts/lemonade_drink.png",
+      imagePath: "lib/images/drinks/lemonade_drink.png",
       price: 2.49,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -499,7 +500,7 @@ class Restaurant {
     Food(
       name: "Milkshake",
       description: "Plastic Bottle",
-      imagePath: "lib/images/desserts/milkshake_drink.png",
+      imagePath: "lib/images/drinks/milkshake_drink.png",
       price: 2.99,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -520,7 +521,7 @@ class Restaurant {
     Food(
       name: "Water",
       description: "Plastic Bottle",
-      imagePath: "lib/images/desserts/water_drink.png",
+      imagePath: "lib/images/drinks/water_drink.png",
       price: 1.49,
       category: FoodCategory.drinks,
       availableAddons: [
@@ -539,4 +540,6 @@ class Restaurant {
       ],
     ),
   ];
+
+  List<Food> get menu => _menu;
 }

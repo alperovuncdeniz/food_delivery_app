@@ -7,9 +7,9 @@ class Food {
   List<Addon> availableAddons;
 
   Food(
-      {required this.description,
+      {required this.name,
+      required this.description,
       required this.imagePath,
-      required this.name,
       required this.price,
       required this.category,
       required this.availableAddons});
