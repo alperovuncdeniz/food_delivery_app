@@ -16,6 +16,14 @@ class MyCartTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<Restaurant>(
       builder: (context, restaurant, child) => Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.secondary,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        margin: const EdgeInsets.symmetric(
+          horizontal: 25,
+          vertical: 10,
+        ),
         child: Column(
           children: [
             Row(
@@ -36,6 +44,7 @@ class MyCartTile extends StatelessWidget {
                     Text("\$" + cartItem.food.price.toString()),
                   ],
                 ),
+                const Spacer(),
                 MyQuantitySelector(
                   quantity: cartItem.quantity,
                   food: cartItem.food,

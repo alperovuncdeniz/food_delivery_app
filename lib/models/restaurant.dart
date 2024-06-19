@@ -74,7 +74,7 @@ class Restaurant extends ChangeNotifier {
       ],
     ),
     Food(
-      name: "Vega Burger",
+      name: "Veggie Burger",
       description:
           "A flavorful veggie patty with fresh lettuce, tomato, red onion, pickles, and vegan mayo.",
       imagePath: "lib/images/burgers/vega_burger.png",
