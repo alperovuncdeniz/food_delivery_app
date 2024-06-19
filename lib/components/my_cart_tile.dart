@@ -36,10 +36,14 @@ class MyCartTile extends StatelessWidget {
                   ],
                 ),
                 MyQuantitySelector(
-                  quantity: quantity,
-                  food: food,
-                  onIncrement: onIncrement,
-                  onDecrement: onDecrement,
+                  quantity: cartItem.quantity,
+                  food: cartItem.food,
+                  onIncrement: () {
+                    restaurant.removeFromCart(cartItem);
+                  },
+                  onDecrement: () {
+                    restaurant.removeFromCart(cartItem);
+                  },
                 )
               ],
             )
