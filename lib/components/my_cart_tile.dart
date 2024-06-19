@@ -39,7 +39,7 @@ class MyCartTile extends StatelessWidget {
                   quantity: cartItem.quantity,
                   food: cartItem.food,
                   onIncrement: () {
-                    restaurant.removeFromCart(cartItem);
+                    restaurant.addToCart(cartItem)
                   },
                   onDecrement: () {
                     restaurant?.removeFromCart(cartItem);
