@@ -547,33 +547,9 @@ class Restaurant extends ChangeNotifier {
 
   List<CartItem> get cart => _cart;
 
-/*   List<CartItem> get cart => _cart; */
-
   //operations
 
   final List<CartItem> _cart = [];
-
-  void addToCart(Food food, List<Addon> selectedAddons) {
-    CartItem? cartItem = _cart.firstWhereOrNull((item) {
-      bool isSameFood = item.food == food;
-
-      bool isSameAddons =
-          ListEquality().equals(item.selectedAddons, selectedAddons);
-
-      return isSameAddons && isSameAddons;
-    });
-
-    if (cartItem != null) {
-      cartItem.quantity++;
-    } else {
-      _cart.add(
-        CartItem(food: food, selectedAddons: selectedAddons),
-      );
-    }
-    notifyListeners();
-  }
-
-/*   final List<CartItem> _cart = [];
 
   void addToCart(Food food, List<Addon> selectedAddons) {
     CartItem? cartItem = _cart.firstWhereOrNull((item) {
@@ -598,7 +574,7 @@ class Restaurant extends ChangeNotifier {
       );
     }
     notifyListeners();
-  } */
+  }
 
   //remove from cart
   void removeFromCart(CartItem cartItem) {
