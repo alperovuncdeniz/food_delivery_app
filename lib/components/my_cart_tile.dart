@@ -26,37 +26,59 @@ class MyCartTile extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    cartItem.food.imagePath,
-                    height: 100,
-                    width: 100,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      cartItem.food.imagePath,
+                      height: 100,
+                      width: 100,
+                    ),
                   ),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(cartItem.food.name),
-                    Text("\$" + cartItem.food.price.toString()),
-                  ],
-                ),
-                const Spacer(),
-                MyQuantitySelector(
-                  quantity: cartItem.quantity,
-                  food: cartItem.food,
-                  onIncrement: () {
-                    restaurant.addToCart(
-                        cartItem.food, cartItem.selectedAddons);
-                  },
-                  onDecrement: () {
-                    restaurant.removeFromCart(cartItem);
-                  },
-                )
-              ],
+                  const SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(cartItem.food.name),
+                      Text("\$" + cartItem.food.price.toString()),
+                    ],
+                  ),
+                  const Spacer(),
+                  MyQuantitySelector(
+                    quantity: cartItem.quantity,
+                    food: cartItem.food,
+                    onIncrement: () {
+                      restaurant.addToCart(
+                          cartItem.food, cartItem.selectedAddons);
+                    },
+                    onDecrement: () {
+                      restaurant.removeFromCart(cartItem);
+                    },
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: cartItem.selectedAddons.isEmpty ? 0 : 60,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: cartItem.selectedAddons
+                    .map(
+                      (addon) => FilterChip(
+                        label: Row(
+                          children: [
+                            Text(addon.name),
+                            Text(addon.price.toString()),
+                          ],
+                        ),
+                        onSelected: (value) {},
+                      ),
+                    )
+                    .toList(),
+              ),
             )
           ],
         ),
