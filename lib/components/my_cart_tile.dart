@@ -42,7 +42,7 @@ class MyCartTile extends StatelessWidget {
                     restaurant.removeFromCart(cartItem);
                   },
                   onDecrement: () {
-                    restaurant.removeFromCart(cartItem);
+                    restaurant?.removeFromCart(cartItem);
                   },
                 )
               ],
