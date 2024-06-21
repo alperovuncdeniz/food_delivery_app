@@ -24,7 +24,22 @@ class CartPage extends StatelessWidget {
                 onPressed: () {
                   showDialog(
                     context: context,
-                    builder: (context) => AlertDialog(),
+                    builder: (context) => AlertDialog(
+                      title: Text("Are you sure you want to clear the cart?"),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text("Cancel"),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            restaurant.clearCart();
+                          },
+                          child: const Text("Yes"),
+                        ),
+                      ],
+                    ),
                   );
                 },
                 icon: const Icon(Icons.delete),
@@ -33,16 +48,22 @@ class CartPage extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: userCart.length,
-                  itemBuilder: (context, index) {
-                    final cartItem = userCart[index];
+              userCart.isEmpty
+                  ? Expanded(
+                      child: Center(
+                        child: const Text("Cart is empty.."),
+                      ),
+                    )
+                  : Expanded(
+                      child: ListView.builder(
+                        itemCount: userCart.length,
+                        itemBuilder: (context, index) {
+                          final cartItem = userCart[index];
 
-                    return MyCartTile(cartItem: cartItem);
-                  },
-                ),
-              )
+                          return MyCartTile(cartItem: cartItem);
+                        },
+                      ),
+                    )
             ],
           ),
         );
