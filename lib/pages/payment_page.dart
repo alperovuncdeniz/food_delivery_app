@@ -37,6 +37,10 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           actions: [
             TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel"),
+            ),
+            TextButton(
               onPressed: () => Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -44,10 +48,6 @@ class _PaymentPageState extends State<PaymentPage> {
                 ),
               ),
               child: const Text("Yes"),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel"),
             ),
           ],
         ),
