@@ -77,6 +77,7 @@ class DeliveryProgressPage extends StatelessWidget {
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
+              const SizedBox(width: 10),
               Container(
                 decoration: BoxDecoration(
                   color: Theme.of(context).colorScheme.surface,
