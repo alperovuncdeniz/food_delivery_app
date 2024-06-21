@@ -49,25 +49,27 @@ class CartPage extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Column(
-                children: [
-                  userCart.isEmpty
-                      ? const Expanded(
-                          child: Center(
-                            child: Text("Cart is empty.."),
-                          ),
-                        )
-                      : Expanded(
-                          child: ListView.builder(
-                            itemCount: userCart.length,
-                            itemBuilder: (context, index) {
-                              final cartItem = userCart[index];
+              Expanded(
+                child: Column(
+                  children: [
+                    userCart.isEmpty
+                        ? const Expanded(
+                            child: Center(
+                              child: Text("Cart is empty.."),
+                            ),
+                          )
+                        : Expanded(
+                            child: ListView.builder(
+                              itemCount: userCart.length,
+                              itemBuilder: (context, index) {
+                                final cartItem = userCart[index];
 
-                              return MyCartTile(cartItem: cartItem);
-                            },
-                          ),
-                        )
-                ],
+                                return MyCartTile(cartItem: cartItem);
+                              },
+                            ),
+                          )
+                  ],
+                ),
               ),
               MyButton(onTap: () {}, text: "Go to checkout")
             ],
