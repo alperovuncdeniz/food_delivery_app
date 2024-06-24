@@ -40,7 +40,18 @@ class _FoodPageState extends State<FoodPage> {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                Image.asset(widget.food.imagePath),
+                Container(
+                  color: Colors.white,
+                  width: 410,
+                  height: 360,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 50, bottom: 5),
+                    child: Image.asset(
+                      widget.food.imagePath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(25.0),
                   child: Column(
@@ -127,7 +138,10 @@ class _FoodPageState extends State<FoodPage> {
                 shape: BoxShape.circle,
               ),
               child: IconButton(
-                icon: const Icon(Icons.arrow_back_ios_new_rounded),
+                icon: const Padding(
+                  padding: EdgeInsets.only(right: 3),
+                  child: Icon(Icons.arrow_back_ios_new_rounded),
+                ),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
