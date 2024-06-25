@@ -4,7 +4,7 @@ import 'package:food_delivery_app/models/cart_item.dart';
 import 'package:food_delivery_app/models/restaurant.dart';
 import 'package:provider/provider.dart';
 
-class MyCartTile extends StatefulWidget {
+class MyCartTile extends StatelessWidget {
   final CartItem cartItem;
 
   const MyCartTile({
@@ -12,11 +12,6 @@ class MyCartTile extends StatefulWidget {
     required this.cartItem,
   });
 
-  @override
-  State<MyCartTile> createState() => _MyCartTileState();
-}
-
-class _MyCartTileState extends State<MyCartTile> {
   @override
   Widget build(BuildContext context) {
     return Consumer<Restaurant>(
@@ -39,7 +34,7 @@ class _MyCartTileState extends State<MyCartTile> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.asset(
-                      widget.cartItem.food.imagePath,
+                      cartItem.food.imagePath,
                       height: 100,
                       width: 100,
                     ),
@@ -48,22 +43,22 @@ class _MyCartTileState extends State<MyCartTile> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.cartItem.food.name),
+                      Text(cartItem.food.name),
                       Text(
-                        "\$" + widget.cartItem.food.price.toString(),
+                        "\$" + cartItem.food.price.toString(),
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),
                       const SizedBox(height: 10),
                       MyQuantitySelector(
-                        quantity: widget.cartItem.quantity,
-                        food: widget.cartItem.food,
+                        quantity: cartItem.quantity,
+                        food: cartItem.food,
                         onIncrement: () {
-                          restaurant.addToCart(widget.cartItem.food,
-                              widget.cartItem.selectedAddons);
+                          restaurant.addToCart(
+                              cartItem.food, cartItem.selectedAddons);
                         },
                         onDecrement: () {
-                          restaurant.removeFromCart(widget.cartItem);
+                          restaurant.removeFromCart(cartItem);
                         },
                       ),
                     ],
@@ -72,11 +67,11 @@ class _MyCartTileState extends State<MyCartTile> {
               ),
             ),
             SizedBox(
-              height: widget.cartItem.selectedAddons.isEmpty ? 0 : 60,
+              height: cartItem.selectedAddons.isEmpty ? 0 : 60,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 10, bottom: 10, right: 10),
-                children: widget.cartItem.selectedAddons
+                children: cartItem.selectedAddons
                     .map(
                       (addon) => Padding(
                         padding: const EdgeInsets.only(right: 8),
