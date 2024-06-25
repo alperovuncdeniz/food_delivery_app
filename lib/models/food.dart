@@ -26,6 +26,7 @@ enum FoodCategory {
 class Addon {
   String name;
   double price;
+  bool isSelected;
 
-  Addon({required this.name, required this.price});
+  Addon({required this.name, required this.price, this.isSelected = true});
 }

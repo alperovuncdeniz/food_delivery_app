@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/components/my_quantity_selector.dart';
 import 'package:food_delivery_app/models/cart_item.dart';
+import 'package:food_delivery_app/models/food.dart';
 import 'package:food_delivery_app/models/restaurant.dart';
 import 'package:provider/provider.dart';
 
-class MyCartTile extends StatelessWidget {
+class MyCartTile extends StatefulWidget {
   final CartItem cartItem;
 
   const MyCartTile({
     super.key,
     required this.cartItem,
   });
+
+  @override
+  State<MyCartTile> createState() => _MyCartTileState();
+}
+
+class _MyCartTileState extends State<MyCartTile> {
+  void toggleAddonSelection(Addon addon) {
+    setState(() {
+      addon.isSelected = !addon.isSelected;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +46,7 @@ class MyCartTile extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
                     child: Image.asset(
-                      cartItem.food.imagePath,
+                      widget.cartItem.food.imagePath,
                       height: 100,
                       width: 100,
                     ),
@@ -43,22 +55,22 @@ class MyCartTile extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(cartItem.food.name),
+                      Text(widget.cartItem.food.name),
                       Text(
-                        "\$" + cartItem.food.price.toString(),
+                        "\$" + widget.cartItem.food.price.toString(),
                         style: TextStyle(
                             color: Theme.of(context).colorScheme.primary),
                       ),
                       const SizedBox(height: 10),
                       MyQuantitySelector(
-                        quantity: cartItem.quantity,
-                        food: cartItem.food,
+                        quantity: widget.cartItem.quantity,
+                        food: widget.cartItem.food,
                         onIncrement: () {
-                          restaurant.addToCart(
-                              cartItem.food, cartItem.selectedAddons);
+                          restaurant.addToCart(widget.cartItem.food,
+                              widget.cartItem.selectedAddons);
                         },
                         onDecrement: () {
-                          restaurant.removeFromCart(cartItem);
+                          restaurant.removeFromCart(widget.cartItem);
                         },
                       ),
                     ],
@@ -67,19 +79,24 @@ class MyCartTile extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: cartItem.selectedAddons.isEmpty ? 0 : 60,
+              height: widget.cartItem.selectedAddons.isEmpty ? 0 : 60,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 10, bottom: 10, right: 10),
-                children: cartItem.selectedAddons
+                children: widget.cartItem.selectedAddons
                     .map(
                       (addon) => Padding(
                         padding: const EdgeInsets.only(right: 8),
                         child: FilterChip(
                           label: Row(
                             children: [
-                              Text(addon.name),
-                              Text(" \$" + addon.price.toString()),
+                              Text(
+                                addon.name + " \$" + addon.price.toString(),
+                                style: TextStyle(
+                                    decoration: addon.isSelected
+                                        ? TextDecoration.none
+                                        : TextDecoration.lineThrough),
+                              ),
                             ],
                           ),
                           shape: StadiumBorder(
@@ -87,7 +104,10 @@ class MyCartTile extends StatelessWidget {
                               color: Theme.of(context).colorScheme.primary,
                             ),
                           ),
-                          onSelected: (value) {},
+                          onSelected: (value) {
+                            toggleAddonSelection(addon);
+                            /*  widget.cartItem.selectedAddons.remove(addon); */
+                          },
                           backgroundColor:
                               Theme.of(context).colorScheme.secondary,
                           labelStyle: TextStyle(
