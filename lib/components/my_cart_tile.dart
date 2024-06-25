@@ -79,7 +79,7 @@ class MyCartTile extends StatelessWidget {
                           label: Row(
                             children: [
                               Text(addon.name),
-                              Text(" (" + "\$" + addon.price.toString() + ")"),
+                              Text(" \$" + addon.price.toString()),
                             ],
                           ),
                           shape: StadiumBorder(
