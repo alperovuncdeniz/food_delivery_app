@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery_app/components/my_button.dart';
 import 'package:food_delivery_app/components/my_receipt.dart';
 import 'package:food_delivery_app/models/restaurant.dart';
+import 'package:food_delivery_app/pages/home_page.dart';
 import 'package:food_delivery_app/services/database/firestore.dart';
 import 'package:provider/provider.dart';
 
@@ -26,13 +28,29 @@ class _DeliveryProgressPageState extends State<DeliveryProgressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-      ),
       bottomNavigationBar: _buildBottomNavBar(context),
-      body: const Column(
-        children: [MyReceipt()],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const MyReceipt(),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: MyButton(
+                  onTap: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      (Route<dynamic> route) => false,
+                    );
+                    Provider.of<Restaurant>(context, listen: false).clearCart();
+                  },
+                  text: "Home Page",
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
