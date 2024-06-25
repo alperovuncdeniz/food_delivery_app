@@ -15,6 +15,9 @@ class MyCurrentLocation extends StatelessWidget {
         content: TextField(
           controller: textController,
           decoration: const InputDecoration(hintText: "Enter address.."),
+          onTapOutside: (event) {
+            FocusScope.of(context).unfocus();
+          },
         ),
         actions: [
           MaterialButton(

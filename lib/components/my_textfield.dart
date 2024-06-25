@@ -19,6 +19,9 @@ class MyTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         obscureText: obscureText,
+        onTapOutside: (event) {
+          FocusScope.of(context).unfocus();
+        },
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderSide:
