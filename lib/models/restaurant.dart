@@ -2,9 +2,14 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/cart_item.dart';
 import 'package:food_delivery_app/models/food.dart';
+import 'package:food_delivery_app/services/database/firestore.dart';
 import 'package:intl/intl.dart';
 
 class Restaurant extends ChangeNotifier {
+  Restaurant() {
+    _loadDeliveryAddress();
+  }
+
   final List<Food> _menu = [
     //burgers
 
@@ -420,7 +425,9 @@ class Restaurant extends ChangeNotifier {
 
   final List<CartItem> _cart = [];
 
-  String _deliveryAddress = "99 Hollywood Blv";
+  String _deliveryAddress = "Enter Your Address";
+
+  FirestoreService db = FirestoreService();
 
   List<Food> get menu => _menu;
 
@@ -507,8 +514,19 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateDeliveryAddress(String newAddress) {
+  Future<void> _loadDeliveryAddress() async {
+    try {
+      _deliveryAddress = await db.getUserAddress();
+    } catch (e) {
+      _deliveryAddress = 'Enter Your Address';
+    }
+    notifyListeners();
+  }
+
+  void updateDeliveryAddress(String newAddress) async {
     _deliveryAddress = newAddress;
+    String userAddress = _deliveryAddress;
+    await db.saveUserAddress(userAddress);
     notifyListeners();
   }
 
