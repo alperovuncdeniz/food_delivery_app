@@ -63,6 +63,7 @@ class _PaymentPageState extends State<PaymentPage> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
           centerTitle: true,
