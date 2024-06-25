@@ -74,6 +74,7 @@ class _PaymentPageState extends State<PaymentPage> {
         body: Column(
           children: [
             CreditCardWidget(
+              isHolderNameVisible: true,
               cardNumber: cardNumber,
               expiryDate: expiryDate,
               cardHolderName: cardHolderName,
