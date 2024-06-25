@@ -79,44 +79,49 @@ class _FoodPageState extends State<FoodPage> {
                         color: Theme.of(context).colorScheme.secondary,
                       ),
                       const SizedBox(height: 10),
-                      Text(
-                        "Add-ons",
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.inversePrimary,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 10),
-                      Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                color: Theme.of(context).colorScheme.secondary),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.zero,
-                          itemCount: widget.food.availableAddons.length,
-                          itemBuilder: (context, index) {
-                            Addon addon = widget.food.availableAddons[index];
-                            return CheckboxListTile(
-                              title: Text(addon.name),
-                              subtitle: Text(
-                                "\$" + addon.price.toString(),
-                                style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                              ),
-                              value: widget.selectedAddons[addon],
-                              onChanged: (bool? value) {
-                                setState(() {
-                                  widget.selectedAddons[addon] = value!;
-                                });
-                              },
-                            );
-                          },
+                      if (widget.food.availableAddons.isNotEmpty) ...[
+                        Text(
+                          "Add-ons",
+                          style: TextStyle(
+                              color:
+                                  Theme.of(context).colorScheme.inversePrimary,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
                         ),
-                      )
+                        const SizedBox(height: 10),
+                        Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: EdgeInsets.zero,
+                            itemCount: widget.food.availableAddons.length,
+                            itemBuilder: (context, index) {
+                              Addon addon = widget.food.availableAddons[index];
+                              return CheckboxListTile(
+                                title: Text(addon.name),
+                                subtitle: Text(
+                                  "\$" + addon.price.toString(),
+                                  style: TextStyle(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                                ),
+                                value: widget.selectedAddons[addon],
+                                onChanged: (bool? value) {
+                                  setState(() {
+                                    widget.selectedAddons[addon] = value!;
+                                  });
+                                },
+                              );
+                            },
+                          ),
+                        )
+                      ]
                     ],
                   ),
                 ),

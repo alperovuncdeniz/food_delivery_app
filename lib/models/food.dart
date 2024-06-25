@@ -12,7 +12,7 @@ class Food {
       required this.imagePath,
       required this.price,
       required this.category,
-      required this.availableAddons});
+      this.availableAddons = const []});
 }
 
 enum FoodCategory {

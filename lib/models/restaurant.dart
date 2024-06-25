@@ -352,20 +352,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/desserts/cheesecake_dessert.png",
       price: 5.99,
       category: FoodCategory.desserts,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
     Food(
       name: "Chocolate Fondue",
@@ -374,20 +360,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/desserts/chocolate_fondue_dessert.png",
       price: 7.99,
       category: FoodCategory.desserts,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
     Food(
       name: "Chocolate Fudge",
@@ -396,20 +368,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/desserts/chocolate_fudge_dessert.png",
       price: 4.99,
       category: FoodCategory.desserts,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
     Food(
       name: "Cookies",
@@ -418,20 +376,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/desserts/cookies_dessert.png",
       price: 3.99,
       category: FoodCategory.desserts,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
     Food(
       name: "Tiramisu",
@@ -440,20 +384,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/desserts/tiramisu_dessert.png",
       price: 6.99,
       category: FoodCategory.desserts,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
 
     //drinks
@@ -464,20 +394,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/drinks/cola_drink.png",
       price: 1.99,
       category: FoodCategory.drinks,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
     Food(
       name: "Lemonade",
@@ -485,20 +401,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/drinks/lemonade_drink.png",
       price: 2.49,
       category: FoodCategory.drinks,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
     Food(
       name: "Milkshake",
@@ -506,20 +408,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/drinks/milkshake_drink.png",
       price: 2.99,
       category: FoodCategory.drinks,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
     Food(
       name: "Water",
@@ -527,20 +415,6 @@ class Restaurant extends ChangeNotifier {
       imagePath: "lib/images/drinks/water_drink.png",
       price: 1.49,
       category: FoodCategory.drinks,
-      availableAddons: [
-        Addon(
-          name: "Extra Marinara Sauce",
-          price: 0.50,
-        ),
-        Addon(
-          name: "Ranch Dip",
-          price: 0.75,
-        ),
-        Addon(
-          name: "Jalapeños",
-          price: 0.75,
-        ),
-      ],
     ),
   ];
 
