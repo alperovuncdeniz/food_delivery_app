@@ -18,12 +18,6 @@ class MyCartTile extends StatefulWidget {
 }
 
 class _MyCartTileState extends State<MyCartTile> {
-  void toggleAddonSelection(Addon addon) {
-    setState(() {
-      addon.isSelected = !addon.isSelected;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<Restaurant>(
@@ -105,8 +99,7 @@ class _MyCartTileState extends State<MyCartTile> {
                             ),
                           ),
                           onSelected: (value) {
-                            toggleAddonSelection(addon);
-                            /*  widget.cartItem.selectedAddons.remove(addon); */
+                            restaurant.toggleAddonSelection(addon);
                           },
                           backgroundColor:
                               Theme.of(context).colorScheme.secondary,

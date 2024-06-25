@@ -28,5 +28,9 @@ class Addon {
   double price;
   bool isSelected;
 
-  Addon({required this.name, required this.price, this.isSelected = true});
+  Addon({
+    required this.name,
+    required this.price,
+    this.isSelected = true,
+  });
 }

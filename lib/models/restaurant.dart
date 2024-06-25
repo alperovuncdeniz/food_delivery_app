@@ -595,6 +595,11 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleAddonSelection(Addon addon) {
+    addon.isSelected = !addon.isSelected;
+    notifyListeners();
+  }
+
   double getTotalPrice() {
     double total = 0.0;
 
@@ -602,7 +607,9 @@ class Restaurant extends ChangeNotifier {
       double itemTotal = cartItem.food.price;
 
       for (Addon addon in cartItem.selectedAddons) {
-        itemTotal += addon.price;
+        if (addon.isSelected) {
+          itemTotal += addon.price;
+        }
       }
 
       total += itemTotal * cartItem.quantity;
@@ -645,8 +652,11 @@ class Restaurant extends ChangeNotifier {
       receipt.writeln(
           "${cartItem.quantity} x ${cartItem.food.name} - ${_formatPrice(cartItem.food.price)}");
       if (cartItem.selectedAddons.isNotEmpty) {
-        receipt
-            .writeln("   Add-ons: ${_formatAddons(cartItem.selectedAddons)}");
+        final activeAddons =
+            cartItem.selectedAddons.where((addon) => addon.isSelected).toList();
+        if (activeAddons.isNotEmpty) {
+          receipt.writeln("   Add-ons: ${_formatAddons(activeAddons)}");
+        }
       }
       receipt.writeln();
     }
@@ -666,7 +676,7 @@ class Restaurant extends ChangeNotifier {
 
   String _formatAddons(List<Addon> addons) {
     return addons
-        .map((addon) => "${addon.name} (${_formatPrice(addon.price)})")
+        .map((addon) => "${addon.name} ${_formatPrice(addon.price)}")
         .join(", ");
   }
 }
