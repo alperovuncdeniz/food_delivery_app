@@ -19,43 +19,61 @@ class _PaymentPageState extends State<PaymentPage> {
   String cvvCode = "";
   bool isCvvFocused = false;
 
-  void userTappedPay() {
+  FocusNode temporaryFocusNode = FocusNode();
+
+  void userTappedPay() async {
+    FocusScope.of(context).requestFocus(temporaryFocusNode);
     if (formKey.currentState!.validate()) {
-      showDialog(
+      FocusScope.of(context).unfocus();
+      await showDialog(
         context: context,
-        builder: (context) => AlertDialog(
-          title: const Text("Confirm Payment"),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: [
-                Text("Card Number: $cardNumber"),
-                Text("Expiry Date: $expiryDate"),
-                Text("Card Holder Name: $cardHolderName"),
-                Text("CVV: $cvvCode"),
-              ],
+        builder: (context) {
+          return AlertDialog(
+            title: const Text("Confirm Payment"),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: [
+                  Text("Card Number: $cardNumber"),
+                  Text("Expiry Date: $expiryDate"),
+                  Text("Card Holder Name: $cardHolderName"),
+                  Text("CVV: $cvvCode"),
+                ],
+              ),
             ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text("Cancel"),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DeliveryProgressPage(),
-                  ),
-                );
-              },
-              child: const Text("Yes"),
-            ),
-          ],
-        ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  FocusScope.of(context).unfocus();
+                },
+                child: const Text("Cancel"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  FocusScope.of(context).unfocus();
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const DeliveryProgressPage(),
+                    ),
+                  );
+                },
+                child: const Text("Yes"),
+              ),
+            ],
+          );
+        },
       );
     }
+    FocusScope.of(context).requestFocus(temporaryFocusNode);
+  }
+
+  @override
+  void dispose() {
+    temporaryFocusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -95,6 +113,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   cvvCode = data.cvvCode;
                 });
               },
+              obscureCvv: true,
               formKey: formKey,
             ),
             const Spacer(),
