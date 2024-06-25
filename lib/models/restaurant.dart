@@ -569,7 +569,9 @@ class Restaurant extends ChangeNotifier {
     });
 
     if (cartItem != null) {
-      cartItem.quantity++;
+      if (cartItem.quantity < 10) {
+        cartItem.quantity++;
+      }
     } else {
       _cart.add(
         CartItem(
