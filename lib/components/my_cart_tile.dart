@@ -33,10 +33,13 @@ class MyCartTile extends StatelessWidget {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      cartItem.food.imagePath,
-                      height: 100,
-                      width: 100,
+                    child: Container(
+                      decoration: const BoxDecoration(color: Colors.white),
+                      child: Image.asset(
+                        cartItem.food.imagePath,
+                        height: 100,
+                        width: 100,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 10),
