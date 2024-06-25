@@ -79,7 +79,8 @@ class CartPage extends StatelessWidget {
                           builder: (context) => const PaymentPage(),
                         ),
                       ),
-                  text: "Go to checkout"),
+                  text: "Go to checkout"
+                      "${" \$" + restaurant.getTotalPrice().toStringAsFixed(2)}"),
               const SizedBox(height: 25),
             ],
           ),
