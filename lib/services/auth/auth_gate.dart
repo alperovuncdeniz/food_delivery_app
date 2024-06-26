@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_delivery_app/pages/home_page.dart';
 import 'package:food_delivery_app/services/auth/login_or_register_page.dart';
 
@@ -12,10 +12,14 @@ class AuthGate extends StatelessWidget {
       body: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return const HomePage();
+          if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.hasData) {
+              return const HomePage();
+            } else {
+              return const LoginOrRegisterPage();
+            }
           } else {
-            return const LoginOrRegisterPage();
+            return const Center(child: CircularProgressIndicator());
           }
         },
       ),

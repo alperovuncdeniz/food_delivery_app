@@ -21,6 +21,7 @@ class FirestoreService {
   Future<void> saveUserAddress(String address) async {
     await users.doc(user!.uid).set({
       'address': address,
+      'email': user!.email,
     }, SetOptions(merge: true));
   }
 
