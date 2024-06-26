@@ -65,6 +65,8 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+   
       drawer: const MyDrawer(),
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) => [
@@ -92,6 +94,7 @@ class _HomePageState extends State<HomePage>
             children: getFoodInThisCategory(restaurant.menu),
           ),
         ),
+
       ),
     );
   }
