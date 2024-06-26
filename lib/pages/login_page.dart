@@ -73,11 +73,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 25),
             MyButton(
               onTap: login,
-
-              
-
               text: "Login",
-
             ),
             const SizedBox(height: 25),
             Row(
@@ -99,7 +95,6 @@ class _LoginPageState extends State<LoginPage> {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Text("Alper Candır"),
               ],
             )
           ],
