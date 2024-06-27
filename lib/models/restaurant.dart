@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery_app/models/cart_item.dart';
 import 'package:food_delivery_app/models/food.dart';
@@ -7,7 +8,11 @@ import 'package:intl/intl.dart';
 
 class Restaurant extends ChangeNotifier {
   Restaurant() {
-    _loadDeliveryAddress();
+    FirebaseAuth.instance.authStateChanges().listen((user) {
+      if (user != null) {
+        _loadDeliveryAddress(user.uid);
+      }
+    });
   }
 
   final List<Food> _menu = [
@@ -425,15 +430,14 @@ class Restaurant extends ChangeNotifier {
 
   final List<CartItem> _cart = [];
 
-  String _deliveryAddress = "Enter Your Address";
-
   FirestoreService db = FirestoreService();
 
   List<Food> get menu => _menu;
 
   List<CartItem> get cart => _cart;
 
-  String get deliveryAddress => _deliveryAddress;
+  String? _deliveryAddress;
+  String get deliveryAddress => _deliveryAddress ?? 'Loading...';
 
   //operations
 
@@ -514,18 +518,19 @@ class Restaurant extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> _loadDeliveryAddress() async {
+  Future<void> _loadDeliveryAddress(String uid) async {
     try {
-      _deliveryAddress = await db.getUserAddress();
+      _deliveryAddress = await db.getUserAddress(uid);
     } catch (e) {
       _deliveryAddress = 'Enter Your Address';
     }
+    debugPrint(_deliveryAddress);
     notifyListeners();
   }
 
   void updateDeliveryAddress(String newAddress) async {
     _deliveryAddress = newAddress;
-    String userAddress = _deliveryAddress;
+    String userAddress = _deliveryAddress!;
     await db.saveUserAddress(userAddress);
     notifyListeners();
   }

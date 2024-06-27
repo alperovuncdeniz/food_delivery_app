@@ -25,8 +25,8 @@ class FirestoreService {
     }, SetOptions(merge: true));
   }
 
-  Future<String> getUserAddress() async {
-    DocumentSnapshot userDoc = await users.doc(user!.uid).get();
+  Future<String> getUserAddress(String uid) async {
+    DocumentSnapshot userDoc = await users.doc(uid).get();
     return userDoc['address'] ?? 'No Address Found';
   }
 }
